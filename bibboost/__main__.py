@@ -55,7 +55,7 @@ def main():
         aux_file += ".aux"
 
     if not os.path.isfile(aux_file):
-        logging.error("file `{}` does not exist", aux_file)
+        logging.error("file `{}` does not exist".format(aux_file))
         sys.exit(1)
 
     aux_dir = os.path.dirname(aux_file)
