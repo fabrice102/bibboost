@@ -12,7 +12,10 @@ build/bibboost.pyz: build/venv/bin/activate requirements.txt $(wildcard bibboost
 	source build/venv/bin/activate; \
 	cd build; \
 	python3 -m pip install -r ../requirements.txt -t bibboost; \
-	python3 -m zipapp bibboost -m "bibboost.__main__:main" -p "/usr/bin/env python3" -c
+	rm -rf bibboost/pybtex/tests bibboost/*.dist-info; \
+	find bibboost -name '__pycache__' -delete; \
+	find bibboost -regex '.*\.py[co]$$' -delete; \
+	python3 -m zipapp bibboost -m "bibboost.__main__:main" -p "/usr/bin/env python3"
 
 build/venv/bin/activate:
 	mkdir -p build
